@@ -104,14 +104,24 @@
     </footer>
 
     <!-- Carrinho -->
-    <div id="carrinho" class="fixed bottom-24 right-5 bg-white border p-4 rounded shadow-lg w-80 z-50">
-        <h3 class="text-lg font-bold mb-2">🛒 Carrinho</h3>
-        <ul id="lista-carrinho" class="text-sm space-y-1 max-h-40 overflow-y-auto"></ul>
-        <p class="font-bold mt-2">Total: R$ <span id="total-carrinho">0,00</span></p>
-        <button onclick="enviarPedido()" class="bg-green-600 hover:bg-green-700 text-white px-3 py-2 mt-2 rounded w-full">
+    <!-- Botão Flutuante do Carrinho -->
+    <button onclick="toggleCarrinho()" 
+    class="fixed bottom-20 right-5 bg-green-200 hover:bg-green-500 text-white p-4 rounded-full shadow-lg z-50"
+    aria-label="Carrinho">
+    🛒
+    </button>
+
+    <!-- Painel do Carrinho (escondido por padrão) -->
+    <div id="painel-carrinho" 
+    class="fixed bottom-28 right-4 left-4 md:left-auto md:right-5 bg-white border p-4 rounded shadow-lg w-full max-w-xs md:w-80 z-50 text-sm hidden">
+    <h3 class="text-lg font-bold mb-2">🛒 Carrinho</h3>
+    <ul id="lista-carrinho" class="text-sm space-y-1 max-h-40 overflow-y-auto"></ul>
+    <p class="font-bold mt-2">Total: R$ <span id="total-carrinho">0,00</span></p>
+    <button onclick="enviarPedido()" class="bg-green-600 hover:bg-green-700 text-white px-3 py-2 mt-2 rounded w-full">
         Finalizar Pedido
-        </button>
+    </button>
     </div>
+
 
     <!-- Botão WhatsApp Flutuante -->
     <a href="https://wa.me/5511945107470?text=Olá!%20Vim%20do%20site%20e%20tenho%20interesse%20nos%20seus%20produtos%20e%20serviços" 
@@ -177,6 +187,11 @@
 
         window.open(`https://wa.me/5511945107470?text=${mensagem}`, '_blank');
         }
+
+        function toggleCarrinho() {
+        const painel = document.getElementById("painel-carrinho");
+            painel.classList.toggle("hidden");
+    }
     </script>
 
     <script>
