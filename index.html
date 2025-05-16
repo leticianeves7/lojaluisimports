@@ -133,6 +133,7 @@
         </svg>
     </a>
 
+
     <!-- Script -->
     <script>
         let carrinho = [];
@@ -145,6 +146,7 @@
             carrinho.push({ nome, preco, quantidade: 1 });
         }
         atualizarCarrinho();
+        mostrarMensagem("✅ Produto adicionado ao carrinho!");
         }
 
         function removerItem(index) {
@@ -152,24 +154,34 @@
         atualizarCarrinho();
         }
 
-        function atualizarCarrinho() {
-        const lista = document.getElementById('lista-carrinho');
-        const totalSpan = document.getElementById('total-carrinho');
-        lista.innerHTML = '';
-        let total = 0;
+        function mostrarMensagem(texto) {
+    const mensagem = document.getElementById("mensagem-feedback");
+    mensagem.textContent = texto;
+    mensagem.classList.remove("hidden");
 
-        carrinho.forEach((item, index) => {
-            const li = document.createElement('li');
-            li.innerHTML = `
-            ${item.nome} (x${item.quantidade}) - R$ ${(item.preco * item.quantidade).toFixed(2)}
-            <button onclick="removerItem(${index})" class="text-red-600 ml-2">x</button>
-            `;
-            lista.appendChild(li);
-            total += item.preco * item.quantidade;
-        });
+    setTimeout(() => {
+        mensagem.classList.add("hidden");
+    }, 2000);
+}
 
-        totalSpan.textContent = total.toFixed(2);
-        }
+function atualizarCarrinho() {
+    const lista = document.getElementById('lista-carrinho');
+    const totalSpan = document.getElementById('total-carrinho');
+    lista.innerHTML = '';
+    let total = 0;
+
+    carrinho.forEach((item, index) => {
+        const li = document.createElement('li');
+        li.innerHTML = `
+        ${item.nome} (x${item.quantidade}) - R$ ${(item.preco * item.quantidade).toFixed(2)}
+        <button onclick="removerItem(${index})" class="text-red-600 ml-2">x</button>
+        `;
+        lista.appendChild(li);
+        total += item.preco * item.quantidade;
+    });
+
+    totalSpan.textContent = total.toFixed(2);
+}
 
         function enviarPedido() {
         if (carrinho.length === 0) {
@@ -203,6 +215,10 @@
         });
     </script>
     
+    <!-- Mensagem de feedback -->
+    <div id="mensagem-feedback" class="fixed bottom-5 left-1/2 transform -translate-x-1/2 bg-green-600 text-white px-4 py-2 rounded shadow-lg hidden z-50">
+        Produto adicionado ao carrinho!
+    </div>
     
 </body>
 </html>
