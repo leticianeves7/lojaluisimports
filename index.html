@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Luis Imports</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    </head>
+    <body class="bg-gray-100 text-gray-900">
+
+    <!-- Header -->
+    <header class="bg-black shadow">
+        <div class="max-w-7xl mx-auto p-4 flex justify-between items-center">
+        <div class="flex items-center">
+            <img src="image/logoluisimports.png" alt="Luis Imports Logo" class="h-40">
+        </div>
+        <nav class="flex gap-8 p-4 items-center">
+            <a href="#servicos" class="text-lg text-white hover:text-gray-400">Serviços</a>
+            <a href="#contato" class="text-lg text-white hover:text-gray-400">Contato</a>
+            <a href="#produtos" class="text-lg text-white hover:text-gray-400">Produtos</a>
+        </nav>
+        </div>
+    </header>
+
+    <!-- Hero -->
+    <section class="bg-black text-white p-10 text-center">
+        <h2 class="text-3xl font-bold">Seu novo celular está aqui!</h2>
+        <p class="mt-2 text-lg">iPhone, Xiaomi, acessórios e consertos com entrega rápida nas regiões próximas.</p>
+    </section>
+
+    <!-- Produtos -->
+    <section id="produtos" class="p-8">
+        <h3 class="text-2xl font-semibold mb-4 text-center">Produtos</h3>
+        <div class="grid md:grid-cols-3 gap-6">
+        
+        <div class="bg-white p-4 rounded shadow">
+            <img src="https://i.ibb.co/VWFKTvCc/1g-jpg.jpg" alt="iPhone" class="w-full mb-2 rounded" />
+            <h4 class="text-lg font-semibold">iPhone 13</h4>
+            <p class="text-gray-600">128GB, lacrado, com garantia.</p>
+            <p class="text-black font-bold mt-2">R$ 3.500</p>
+            <button onclick="adicionarAoCarrinho('iPhone 13', 3500)" class="mt-2 bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 w-full">
+            Adicionar ao Carrinho
+            </button>
+        </div>
+
+        <div class="bg-white p-4 rounded shadow">
+            <img src="https://i.ibb.co/B59R97JK/Verde10-jpg.webp" alt="Xiaomi" class="w-full mb-2 rounded" />
+            <h4 class="text-lg font-semibold">Xiaomi Redmi Note 12</h4>
+            <p class="text-gray-600">Versão global, 128GB, ótimo custo-benefício.</p>
+            <p class="text-black font-bold mt-2">R$ 1.200</p>
+            <button onclick="adicionarAoCarrinho('Xiaomi Redmi Note 12', 1200)" class="mt-2 bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 w-full">
+            Adicionar ao Carrinho
+            </button>
+        </div>
+
+        <div class="bg-white p-4 rounded shadow">
+            <img src="https://i.ibb.co/Y4mRGyrF/Designsemnome-5-800x-png.webp" alt="Acessórios" class="w-full mb-2 rounded" />
+            <h4 class="text-lg font-semibold">Acessórios</h4>
+            <p class="text-gray-600">Capinhas, películas, carregadores e mais.</p>
+            <p class="text-black font-bold mt-2">A partir de R$ 20</p>
+            <button onclick="adicionarAoCarrinho('Acessórios', 20)" class="mt-2 bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 w-full">
+            Adicionar ao Carrinho
+            </button>
+        </div>
+
+        </div>
+    </section>
+
+    <!-- Serviços -->
+    <section id="servicos" class="bg-white p-8 mt-4">
+        <h3 class="text-2xl font-semibold mb-4 text-center">Serviços</h3>
+        <div class="grid md:grid-cols-2 gap-6">
+        <div class="bg-gray-100 p-4 rounded">
+            <h4 class="text-lg font-semibold">Conserto de Celulares</h4>
+            <p class="text-gray-600">Troca de tela, bateria, limpeza e manutenção com qualidade e rapidez.</p>
+        </div>
+        <div class="bg-gray-100 p-4 rounded">
+            <h4 class="text-lg font-semibold">Entrega Rápida</h4>
+            <p class="text-gray-600">Entregamos em bairros e cidades próximas. Consulte disponibilidade.</p>
+        </div>
+        </div>
+    </section>
+
+    <!-- Contato -->
+    <section id="contato" class="bg-black text-white p-8 mt-4 text-center">
+        <h3 class="text-2xl font-semibold mb-4">Fale com a gente</h3>
+        <p>📞 WhatsApp: <a href="https://wa.me/5511945107470" class="underline">Clique aqui</a></p>
+        <p>📸 Instagram: <a href="https://instagram.com/luis_importsss" class="underline">@luis_importsss</a></p>
+        <p>📍 Loja física: Rua Tiradentes, 73 - Heliopólis, São Paulo - SP</p>
+        <p class="mt-4">📦 Entrega disponível em regiões próximas</p>
+    </section>
+
+    <!-- Rodapé -->
+    <footer class="bg-gray-800 text-white text-center p-4 mt-6">
+        © 2025 Luis Imports - Todos os direitos reservados
+    </footer>
+
+    <!-- Carrinho -->
+    <div id="carrinho" class="fixed bottom-24 right-5 bg-white border p-4 rounded shadow-lg w-80 z-50">
+        <h3 class="text-lg font-bold mb-2">🛒 Carrinho</h3>
+        <ul id="lista-carrinho" class="text-sm space-y-1 max-h-40 overflow-y-auto"></ul>
+        <p class="font-bold mt-2">Total: R$ <span id="total-carrinho">0,00</span></p>
+        <button onclick="enviarPedido()" class="bg-green-600 hover:bg-green-700 text-white px-3 py-2 mt-2 rounded w-full">
+        Finalizar Pedido
+        </button>
+    </div>
+
+    <!-- Botão WhatsApp Flutuante -->
+    <a href="https://wa.me/5511945107470?text=Olá!%20Vim%20do%20site%20e%20tenho%20interesse%20nos%20seus%20produtos%20e%20serviços" 
+        class="fixed bottom-5 right-5 bg-green-500 hover:bg-green-600 text-white p-4 rounded-full shadow-lg z-50"
+        target="_blank" aria-label="WhatsApp">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="white" viewBox="0 0 24 24">
+        <path d="M12 0C5.373 0 0 5.373 0 12c0 2.121.554 4.096 1.523 5.816L0 24l6.314-1.658A11.943 11.943 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0z"/>
+        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.472-.148-.67.15-.198.297-.767.967-.94 1.165-.173.198-.347.223-.644.075-.297-.149-1.255-.463-2.39-1.475-.883-.788-1.48-1.76-1.653-2.058-.173-.297-.018-.458.13-.606.133-.133.297-.347.446-.52.149-.173.198-.297.297-.495.099-.198.05-.372-.025-.52-.075-.148-.67-1.611-.916-2.206-.242-.582-.49-.504-.67-.513l-.57-.01c-.198 0-.52.075-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.095 3.2 5.078 4.487.709.306 1.262.488 1.693.624.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.007-1.413.248-.694.248-1.29.173-1.413-.074-.124-.272-.198-.57-.347z"/>
+        </svg>
+    </a>
+
+    <!-- Script -->
+    <script>
+        let carrinho = [];
+
+        function adicionarAoCarrinho(nome, preco) {
+        const existente = carrinho.find(item => item.nome === nome);
+        if (existente) {
+            existente.quantidade++;
+        } else {
+            carrinho.push({ nome, preco, quantidade: 1 });
+        }
+        atualizarCarrinho();
+        }
+
+        function removerItem(index) {
+        carrinho.splice(index, 1);
+        atualizarCarrinho();
+        }
+
+        function atualizarCarrinho() {
+        const lista = document.getElementById('lista-carrinho');
+        const totalSpan = document.getElementById('total-carrinho');
+        lista.innerHTML = '';
+        let total = 0;
+
+        carrinho.forEach((item, index) => {
+            const li = document.createElement('li');
+            li.innerHTML = `
+            ${item.nome} (x${item.quantidade}) - R$ ${(item.preco * item.quantidade).toFixed(2)}
+            <button onclick="removerItem(${index})" class="text-red-600 ml-2">x</button>
+            `;
+            lista.appendChild(li);
+            total += item.preco * item.quantidade;
+        });
+
+        totalSpan.textContent = total.toFixed(2);
+        }
+
+        function enviarPedido() {
+        if (carrinho.length === 0) {
+            alert("Seu carrinho está vazio.");
+            return;
+        }
+
+        let mensagem = "Olá! Gostaria de fazer o seguinte pedido:%0A";
+        carrinho.forEach(item => {
+            mensagem += `• ${item.nome} (x${item.quantidade}) - R$ ${(item.preco * item.quantidade).toFixed(2)}%0A`;
+        });
+
+        let total = carrinho.reduce((soma, item) => soma + item.preco * item.quantidade, 0);
+        mensagem += `%0ATotal: R$ ${total.toFixed(2)}`;
+
+        window.open(`https://wa.me/5511945107470?text=${mensagem}`, '_blank');
+        }
+    </script>
+
+    </body>
+    </html>
